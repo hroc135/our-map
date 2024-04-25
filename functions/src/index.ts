@@ -9,18 +9,10 @@
 
 import * as functions from "firebase-functions";
 import * as express from "express";
-import {
-  addEntry,
-  getAllEntries,
-  updateEntry,
-  deleteEntry,
-} from "./entryController";
+import {addMapPoint} from "./mapController";
 
 const app = express();
 app.get("/", (req, res) => res.status(200).send("Hey there!"));
-app.get("/hello", (req, res) => res.status(200).send("Hello World"));
-app.post("/entries", addEntry);
-app.get("/entries", getAllEntries);
-app.patch("/entries/:entryId", updateEntry);
-app.delete("/entries/:entryId", deleteEntry);
+app.post("/map", addMapPoint);
+
 exports.app = functions.https.onRequest(app);
